@@ -390,6 +390,21 @@ services:
       networks:
         - backend
 
+### kafka-ui ###########################################
+    kafka-ui:
+      image: provectuslabs/kafka-ui
+      container_name: kafka-ui
+      ports:
+        - "18080:8080"
+      restart: always
+      environment:
+        - KAFKA_CLUSTERS_0_NAME=beijing
+        - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=10.30.36.211:9094
+        - KAFKA_CLUSTERS_1_NAME=wuhan
+        - KAFKA_CLUSTERS_1_BOOTSTRAPSERVERS=10.30.36.211:9094
+      networks:
+        - backend
+
 ### plantuml ###########################################
     plantuml:
       image: plantuml/plantuml-server:jetty
