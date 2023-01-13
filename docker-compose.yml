@@ -442,4 +442,36 @@ services:
         - -k
         - "1234"
         - -m
-        - rc4-md5        
+        - rc4-md5 
+
+#### rustdesk ##############
+    hbbs:
+      image: rustdesk/rustdesk-server
+      container_name: hbbs
+      volumes:
+        - ${DATA_PATH_HOST}/rustdesk:/root
+      restart: unless-stopped
+      ports:
+        - 21115:21115
+        - 21116:21116
+        - 21116:21116/udp
+        - 21118:21118
+      networks:
+        - backend
+      command: hbbs
+    
+    hbbr:
+      image: rustdesk/rustdesk-server
+      container_name: hbbr
+      volumes:
+        - ${DATA_PATH_HOST}/rustdesk:/root
+      restart: unless-stopped
+      ports:
+        - 21117:21117
+        - 21119:21119
+      networks:
+        - backend
+      command: hbbr
+      depends_on:
+        - hbbs
+                       
