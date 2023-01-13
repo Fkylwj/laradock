@@ -412,4 +412,34 @@ services:
         - 6000:8080
       networks:
         - backend
-        
+
+### wifi ###########################################
+    wifi-server:
+        image: hub.deepin.com/jeyrce/ss:latest
+        restart: unless-stopped
+        command:
+          - /usr/local/bin/ssserver
+          - -p
+          - "8388"
+          - -k
+          - "1234"
+          - -m
+          - rc4-md5
+        ports:
+          - 8388:8388
+        network_mode: host
+
+    wifi-local:
+      image: hub.deepin.com/jeyrce/ss:latest
+      network_mode: host
+      restart: unless-stopped
+      command:
+        - /usr/local/bin/sslocal
+        - -b
+        - 0.0.0.0
+        - -s
+        - 127.0.0.1
+        - -k
+        - "1234"
+        - -m
+        - rc4-md5        
