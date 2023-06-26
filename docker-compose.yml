@@ -459,6 +459,7 @@ services:
       networks:
         - backend
       command: hbbs
+      # command: hbbs -r <your_domain>:<hbbr_port>
     
     hbbr:
       image: rustdesk/rustdesk-server
