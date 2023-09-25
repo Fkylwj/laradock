@@ -414,6 +414,7 @@ services:
         - backend
 
 ### wifi ###########################################
+# docker compose up -d wifi-server wifi-local
     wifi-server:
         image: hub.deepin.com/jeyrce/ss:latest
         restart: unless-stopped
@@ -445,6 +446,7 @@ services:
         - rc4-md5 
 
 #### rustdesk ##############
+# docker compose up -d hbbr hbbs
     hbbs:
       image: rustdesk/rustdesk-server
       container_name: hbbs
